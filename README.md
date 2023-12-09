@@ -1,46 +1,53 @@
-# Stick_Hero
-This readme provides an overview of the Stick Hero game application. The application has one package: `com.example.demo6`. The package contains classes that contribute to the overall functionality of the Stick Hero game.
+ReadMe for Stick Hero Game
 
- Class: Main
-- Purpose: Launches the Stick Hero game by initializing the JavaFX application and loading the HomeScreen.fxml.
-- Description: 
- Extends `javafx.application.Application`.
-The `start` method sets up the primary stage, loads the `HomeScreen.fxml`, and displays it.
+This is a simple implementation of the Stick Hero game using JavaFX. The game involves extending a stick to bridge the gap between platforms and advance in the game.
 
-Class: SceneController
-- Purpose: Controls the scenes and transitions between screens.
-- Description:
- Manages the switching of scenes from the Home Screen to the Play Screen.
-Handles events such as button clicks to switch between scenes.
-Initializes the background image and sets it as the background of the scene.
- Defines a method (`switchToScene2`) to switch from the Home Screen to the Play Screen.
+Contents
+1. Overview
+2. Getting Started
+3. Game Components
+4. Game Logic
+5. Pillar Generation
+6. Start Screen
 
-FXML: HomeScreen.fxml
-- Purpose: Defines the layout and appearance of the Home Screen.
-- Description:
- Contains an anchor pane with a background image, a "START" button, and a "STICK HERO" label.
-The button is associated with the `switchToScene2` method in the `SceneController` class.
+Overview
+The Stick Hero game is implemented using JavaFX. The game consists of a stick that the player can extend to bridge the gap between platforms (pillars). The goal is to successfully bridge the gap and land on the next platform.
 
-FXML: PlayScreen.fxml
-- Purpose: Placeholder for the Play Screen UI.
-- Description:
-Currently empty as it seems to be a placeholder for the Play Screen.
+Getting Started
+To run the game, you can use the provided `stickHero` class, which serves as the entry point for the application. The game starts with a welcome screen, and clicking the "PLAY" button will transition to the game screen.
 
-Additional Notes
-Image resources, such as "2256.jpg" and "stickman.png," are assumed to be located in the specified paths. Ensure that the paths are correct. 
+Game Components
+HelloController
+- Manages the game screen using JavaFX.
+- Handles user input for extending the stick and releasing to check for collisions.
+- Uses a `Rectangle` for the stick and platform.
 
-Running the Application
-1. Ensure that you have JavaFX properly installed.
-2. Run the `Main` class in the `com.example.demo6` package to launch the Stick Hero game.
+Pillar, PillarDistance, and PillarGenerator
+- `Pillar` and `PillarDistance` are subclasses of `GameComponents`, representing different aspects of the pillars.
+- `PillarGenerator` creates and manages the pillars in the game.
+
+StartScreen
+- Represents the initial screen with the game title and a "PLAY" button.
+- Clicking the "PLAY" button transitions to the game screen.
+
+Game Logic
+The game logic is handled in the `HelloController` class, where the stick can be extended by pressing the space key. The game checks for collisions when the space key is released. The `PillarGenerator` class generates pillars with varying widths and distances between them.
+
+Pillar Generation
+Pillars are generated using the `PillarGenerator` class, which creates a list of rectangles representing the pillars. The width and distance between pillars are determined randomly.
+
+Start Screen
+The `StartScreen` class creates the initial screen with a background image, game title, and a "PLAY" button. Clicking the "PLAY" button transitions to the game screen.
 
 Design Pattern
 
-The provided code doesn't strictly adhere to a specific design pattern. However, there are elements that resemble the Model-View-Controller (MVC) pattern, a commonly used architectural design pattern in JavaFX applications.
 
-Here's a breakdown:
+The provided code doesn't explicitly follow a well-defined design pattern, but it exhibits some principles of the Model-View-Controller (MVC) pattern, which is commonly used in GUI-based applications. Here's a breakdown:
 
-1. Model: The model represents the data and business logic of the application. In this case, it could include the game logic, such as handling the growth of the stick and managing pillars. However, the model is not explicitly defined, and the game logic is spread across different methods.
+1. Model: The classes `Pillar`, `PillarDistance`, and `PillarGenerator` can be considered part of the model. They represent the data (pillar attributes) and the logic for generating and managing pillars in the game.
 
-2. View (FXML Files and SceneController): The FXML files (`HomeScreen.fxml` and `PlayScreen.fxml`) define the visual representation of the application's user interface. The `SceneController` class manages the scenes and controls the transition between them. The FXML files act as the view components.
+2. View: The `HelloController` class, along with the associated FXML file, is responsible for managing the visual components of the game screen. It handles user input, updates the view (stick and platform), and contains the logic for collision detection.
 
-3. Controller (`SceneController` and `stickHero`): The controller is responsible for handling user input, updating the model, and updating the view. In this case, both `SceneController` and `stickHero` classes include logic related to user input and scene management. `SceneController` manages the switching of scenes, while `stickHero` handles game-related events.
+3. Controller:The `StartScreen` class serves as the initial screen controller, handling the transition to the game screen. The `HelloController` class is the game screen controller, managing the interaction between the view and the model.
+
+
